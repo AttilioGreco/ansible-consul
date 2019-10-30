@@ -6,6 +6,10 @@
   hosts: all
   roles:
     - role: ansible-consul
+      # no_configure: "no_configure"
+      # consul_service_status: "stopped"
+      # no_install: "noInstall"
+      consul_service_status: "started"
       consul_master_token: myToken
       consul_server: true
       consul_configs:
