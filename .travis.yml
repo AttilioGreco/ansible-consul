@@ -6,8 +6,8 @@ sudo: false
 addons:
   apt:
     packages:
-    - python-pip
-    - curl
+      - python-pip
+      - curl
 
 install:
   - pip install ansible

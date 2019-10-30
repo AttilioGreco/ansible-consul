@@ -1,3 +1,4 @@
+---
 - name: install | Ensure Consul service group exists
   group:
     name: "{{ consul_group_name }}"
@@ -25,7 +26,7 @@
     - "{{ consul_data_dir }}"
     - "{{ consul_user_home }}/bin"
 
-- name:  install | check if consul binary exist
+- name: install | check if consul binary exist
   stat:
     path: "{{ consul_user_home }}/bin/consul"
   register: consul_bin
@@ -46,13 +47,8 @@
     owner: root
     group: root
     mode: 0600
-  register: consul_svc_manifest
-
-- name: install | Reload Consul service config
-  systemd:
-    name: consul
-    daemon_reload: true
-  when: consul_svc_manifest.changed
+  notify:
+    - Daemon Reload Consul
 
 - name: install | enabled consul on boot ("{{ enable_on_boot }}")
   service:

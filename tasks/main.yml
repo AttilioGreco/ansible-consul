@@ -16,7 +16,7 @@
     - no_configure is not defined
   tags: config
 
-- name: Ensure the Consul service is "{{ consul_service_status }}" 
+- name: Ensure the Consul service is "{{ consul_service_status }}"
   service:
     name: consul
     state: "{{ consul_service_status }}"
