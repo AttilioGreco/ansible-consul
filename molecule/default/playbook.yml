@@ -6,6 +6,7 @@
   hosts: all
   roles:
     - role: ansible-consul
+      consul_master_token: myToken
       consul_server: true
       consul_configs:
         main:
