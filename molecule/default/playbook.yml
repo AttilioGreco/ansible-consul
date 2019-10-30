@@ -1,0 +1,22 @@
+---
+- name: run the main role
+  become: true
+  become_method: su
+  become_user: root
+  hosts: all
+  roles:
+    - role: ansible-consul
+      consul_server: true
+      consul_configs:
+        main:
+          acl_datacenter: pantheon
+          acl_master_token: "{{ consul_master_token | to_uuid }}"
+          bootstrap: true
+          bind_addr: 0.0.0.0
+          client_addr: 0.0.0.0
+          datacenter: pantheon
+          data_dir: "{{ consul_data_dir }}"
+          log_level: INFO
+          node_name: master
+          server: "{{ consul_server }}"
+          ui: true
