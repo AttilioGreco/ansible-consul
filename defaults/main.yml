@@ -16,6 +16,11 @@ consul_extra_args: []
 consul_service_file:
   src: consul.service.j2
   dest: /etc/systemd/system/consul.service
+consul_service_status: started
+#reloaded
+#restarted
+#started
+#stopped
 
 consul_config:
   datacenter: dc-1

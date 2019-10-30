@@ -1,5 +1,4 @@
 ---
-
   - name: Ensure Consul service group exists
     group:
       name: "{{ consul_group_name }}"
@@ -65,13 +64,13 @@
       daemon_reload: true
     when: consul_svc_manifest.changed
 
-  - name: Ensure the Consul service is running
-    service:
-      name: consul
-      state: started
-    when: not consul_packer_provision
-
   - name: Ensure the Consul service is enabled on boot
     service:
       name: consul
       enabled: yes
+
+  - name: Ensure the Consul service is "{{ consul_service_status }}" 
+    service:
+      name: consul
+      state: "{{ consul_service_status }}"
+    when: not consul_packer_provision
